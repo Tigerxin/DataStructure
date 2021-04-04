@@ -1,21 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXSIZE 100 // ÏßĞÔ±í´æ´¢¿Õ¼äµÄ³õÊ¼·ÖÅäÁ¿
-// º¯Êı½á¹û×´Ì¬´úÂë
+#define MAXSIZE 100 // çº¿æ€§è¡¨å­˜å‚¨ç©ºé—´çš„åˆå§‹åˆ†é…é‡
+// å‡½æ•°ç»“æœçŠ¶æ€ä»£ç 
 #define TRUE 1
 #define FALSE 0
 #define OK 1
 #define ERROR 0
 #define OVERFLOW -2
 
-// Status ÊÇº¯ÊıµÄÀàĞÍ£¬ÆäÖµÊÇº¯Êı½á¹û×´Ì¬´úÂë
+// Status æ˜¯å‡½æ•°çš„ç±»å‹ï¼Œå…¶å€¼æ˜¯å‡½æ•°ç»“æœçŠ¶æ€ä»£ç 
 typedef int Status;
 
 typedef struct{
     int id;
     char *name;
-    int age;
 } Person;
 
 typedef struct{
