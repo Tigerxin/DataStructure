@@ -15,6 +15,7 @@ typedef int Status;
 typedef struct{
     int id;
     char *name;
+    int age;
 } Person;
 
 typedef struct{
