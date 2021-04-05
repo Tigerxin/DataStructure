@@ -1,1 +1,2 @@
-About-C/*,!*.c
+About-C/*
+!*.c
