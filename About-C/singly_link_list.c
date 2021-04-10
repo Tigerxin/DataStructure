@@ -26,9 +26,20 @@ Status InsertPreNode(LNode *p, int data);
 Status DeleteListNodeByI(Single_LinkList L, int i);
 // 删除指定结点p
 Status DeleNodeByNode(LNode *p);
+// 按位查找，返回第i个元素（带头结点）
+LNode * GetNodeByPosition(Single_LinkList L, int position);
+// 按值查找
+LNode * GetNodeByData(Single_LinkList L, int data);
+// 求表的长度
+int GetLength(Single_LinkList L);
+// 尾插法建立单链表
+Single_LinkList BuildMyList(Single_LinkList L);
+// 头插法建立单链表
+Single_LinkList BuildMyListOnHead(Single_LinkList L);
 
 int main(){
     Single_LinkList L;
+#if 0   // 测试初始化链表
     L = InitList(L);
     if(L==NULL){
         printf("初始化无头结点单链表成功%d\n",L);
@@ -37,6 +48,13 @@ int main(){
         printf("初始化有头结点单链表成功%d\n",L);
         printf("%p==>%d\n",L,L);
     }
+#endif
+#if 1   // 测试尾插法和获取数据
+    printf("请输出需要存储的数据,输入9999退出\n");
+    L = BuildMyList(L);
+    int length = GetLength(L);
+    printf("尾插法有%d个数据！\n",length);
+#endif
 }
 
 // 初始化一个空的单链表
@@ -162,6 +180,76 @@ Status DeleNodeByNode(LNode *p){
     free(q);
     return SUCCESS;
 }
+
+// 按位查找，返回第i个元素（带头结点）
+LNode * GetNodeByPosition(Single_LinkList L, int position){
+    if(position < 0)
+        return NULL;
+    LNode *p;   // 指针p指向当前扫描的结点
+    int j = 0;  // 当前p指向的是第几个结点
+    p = L;
+    while(p!=NULL && j<position){
+        p = p->next;
+        j++;
+    }
+    return p;
+}
+
+// 按值查找
+LNode * GetNodeByData(Single_LinkList L, int data){
+    LNode *p = L->next;
+    while(p!=NULL && p->data!=data){
+        p = p->next;
+    }
+    return p;
+}
+
+// 求表的长度
+int GetLength(Single_LinkList L){
+    int len = 0;    // 统计表长
+    LNode *p = L;
+    while(p->next != NULL){
+        p = p->next;
+        len++;
+    }
+    return len;
+}
+
+// 尾插法建立单链表
+Single_LinkList BuildMyList(Single_LinkList L){
+    int inputData;
+    L = (Single_LinkList)malloc(sizeof(LNode));
+    LNode *node,*end = L;   // end为表尾指针
+    scanf("%d",&inputData);
+    while(inputData != 9999){
+        node = (LNode*)malloc(sizeof(LNode));
+        node->data = inputData;
+        end->next = node;
+        end = node;
+        scanf("%d",&inputData);
+    }
+    end->next = NULL;
+    return L;
+}
+
+// 头插法建立单链表
+Single_LinkList BuildMyListOnHead(Single_LinkList L){
+    LNode *node;
+    int inputData;
+    L = (Single_LinkList)malloc(sizeof(LNode)); // 创建头结点
+    L->next = NULL;
+    scanf("%d",&inputData);
+    while(inputData != 9999){
+        node = (LNode*)malloc(sizeof(LNode));
+        node->data = inputData;
+        node->next = L->next;
+        L->next = node; // 将新结点插入表中，L为头指针
+        scanf("%d",&inputData);
+    }
+    return L;
+}
+
+
 
 
 
