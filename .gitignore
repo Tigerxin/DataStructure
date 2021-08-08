@@ -1,3 +1,7 @@
-About-C/*
+/About-C/*
 !*.c
 !*.cpp
+!*.h
+!*.cpp
+!/About-C/LinkListTest/*
+!/About-C/Recursive/*
